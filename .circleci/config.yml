@@ -34,7 +34,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "production" ] ] ; then
                 twine upload dist/*
             else
-                echo "Did not publish - not master branch!"
+                echo "Did not publish - not production branch!"
             fi
 
 
