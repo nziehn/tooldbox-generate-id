@@ -21,17 +21,20 @@ jobs:
             SLOW_TESTS=1 nosetests --rednose
 
       - run:
-          name: Add .pypirc file
+          name: Package & Publish
           command: |
-            echo -e "[pypi]" > ~/.pypirc
-            echo -e "username = nziehn" >> ~/.pypirc
-            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+            # package
+            python setup.py sdist
+            python setup.py bdist_wheel
 
-      - run:
-          name: Publish
-          command: |
-            sudo pip install twine
             if [ "${CIRCLE_BRANCH}" == "production" ] ; then
+                # prepare pypirc file
+                echo -e "[pypi]" > ~/.pypirc
+                echo -e "username = nziehn" >> ~/.pypirc
+                echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+
+                # publish
+                sudo pip install twine
                 twine upload dist/*
             else
                 echo "Did not publish - not production branch!"
