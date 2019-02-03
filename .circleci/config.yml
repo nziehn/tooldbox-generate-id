@@ -20,6 +20,26 @@ jobs:
           command: |
             SLOW_TESTS=1 nosetests --rednose
 
+      - run:
+          name: Add .pypirc file
+          command: |
+            echo -e "[pypi]" > ~/.pypirc
+            echo -e "username = nziehn" >> ~/.pypirc
+            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+
+      - run:
+          name: Publish
+          command: |
+            sudo pip install twine
+            if [ "${CIRCLE_BRANCH}" == "production" ] ] ; then
+                twine upload dist/*
+            else
+                echo "Did not publish - not master branch!"
+            fi
+
+
+
+
 workflows:
   version: 2
   test-and-publish:
