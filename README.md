@@ -1,4 +1,5 @@
 # Readable ID
+[![CircleCI](https://circleci.com/gh/nziehn/readableID.svg?style=svg)](https://circleci.com/gh/nziehn/readableID)
 
 Use readableID to transform integer item ids to readable, nonconsecutive ids
 
@@ -22,6 +23,7 @@ Just install using `pip`:
 ```
 pip install readableID
 ```
+
 
 ### Usage
 
