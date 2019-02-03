@@ -9,7 +9,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='readableID',
-    version='0.0.3',
+    version='0.0.4',
     description='Transform integer ids into readable, nonconsecutive ids',
     long_description=long_description,
     long_description_content_type='text/markdown',
